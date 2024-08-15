@@ -59,7 +59,7 @@
 
         let res= async ()=>{
             try{
-                let response= await fetch(URL);
+                let response= await fetch(URL,options);
                 if( !response.ok){
                     throw new Error('Response'+response.status)
                 }
@@ -75,7 +75,7 @@
 
         function logic(data){
             //console.log(data[0]['results'])
-            arrOfObjs=data[0]['results']
+            arrOfObjs=data['results']
             let mens=[]
             for(let i of arrOfObjs){
                 if(i['categoryName']=='Men')
