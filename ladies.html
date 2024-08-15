@@ -48,7 +48,15 @@
 
     </div>
     <script>
-        const URL='http://localhost:3000/prods'
+        const URL= "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list?"
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': 'c72316ead3msh0bd3afd99524508p1c8dcajsn37d1d15114fe',
+                'x-rapidapi-host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+            }
+        };
 
         let res= async ()=>{
             try{
