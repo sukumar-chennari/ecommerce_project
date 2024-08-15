@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H&M</title>
+    <link rel="shortcut icon" href="./h-m.svg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        dialog::backdrop{
+            padding: 0;
+            margin: 0;
+        }
+        /*register page */
+        #registerDialog{
+            position: absolute;
+            border: none;
+            padding: 5px;
+            background-color: whitesmoke;
+            
+            top: 50%;
+            left: 50%;
+            right: 50%;
+            transform: translate(-50%,-50%);
+           }
+
+        /* sign styling*/
+       #signDialog{
+        position: absolute;
+        border: none;
+        top: 50%;
+        left: 50%;
+        right: 50%;
+        background-color: whitesmoke;
+        transform: translate(-50%,-50%);
+
+       }
+       #formMainDiv{
+        width: 400px;
+        height: max-content;
+        padding: 10px;
+        background-color: whitesmoke;
+    }
+    #formMainDiv p{
+        font-weight: bold;
+        font-size: small;
+    }
+    .formFirstDiv{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+    }
+    .formFirstDiv svg{
+        width: 32px;
+        height: 32px;
+    }
+
+    #signForm .input{
+        margin-top: 10px;
+        width: 100%;
+        height: 30px;
+    }
+    #registerForm .input{
+        margin-top: 10px;
+        width: 100%;
+        height: 30px;
+    }
+    span{
+        color: red;
+        vertical-align: super;
+    }
+    .textSpan{  
+        color: gray;
+    }
+    .lastDiv{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .btn{
+        width: 100%;
+        height: 35px;
+        margin-top: 10px;
+    }
+    .signInBtn{
+        background-color: black;
+        color: white;
+        font-weight: bolder;
+        word-spacing: 2px;
+    }
+
+    .becomeBtn{
+        font-weight: bolder;
+    }
+
+    .a{
+        width: 100%;
+        text-align: center;
+        font-size: small;
+    }
+    
+
+    /*three dot styling */
+
+    #threeDots{
+        cursor: pointer;
+    }
+    #threeDot{
+        height: 90px;
+        width: 250px;
+        padding: 10px;
+        position: absolute;
+        left: 30%;
+        z-index: -1;
+        margin-top: -999px;
+        background-color: whitesmoke;
+    }
+    .threeDotClass{
+        position: absolute;
+        margin-top:0px !important;
+        position: absolute;
+        top: 25px;
+        left: 25%;
+        z-index: 10 ;
+        background-color: white !important;
+    }
+    #threeDot a{
+        display: block;
+        padding: 5px;
+        color: #010002;
+        border: 1px solid gainsboro;
+        
+    }
+
+        /*Nav bar styling*/
+
+        #hamburger{
+            display: none;
+        }
+        nav{
+            display: flex;
+            justify-content: space-between;
+        }
+        .navLeftDiv svg, .navRightDiv svg{
+            height: 30px;
+        }
+        nav ul{
+            display: flex;
+            align-items: center;
+        }
+        nav ul>li{
+            margin: 5px;
+            list-style: none;
+            padding: 2px;
+        }
+        .hmLogo svg{
+            width: 100px;
+            height: 100px;
+        }
+
+        .navRightDiv{
+            padding-right: 20px;
+        }
+        .navLeftDiv ul li a,  .navRightDiv ul li a{
+            text-decoration: none;
+            color: black;
+            transition: all ease 0.3s;
+        }
+
+        /*catrgories styling*/
+        #ladies,#kids, #mens{
+            cursor: pointer;
+        }
+        /*nav right  sign in hover styling*/
+        .navRightDiv ul li  .signHoverDiv{
+            position: absolute;
+            z-index: -99;
+            margin-top: -50%;
+            transition: all ease 0.5s;
+        }
+        .navRightDiv ul li:hover  .signHoverDiv{
+            z-index: 1;
+            width: 200px;
+            margin-top: 10px;
+            background-color: white;
+            padding-left: 5px;
+            
+        }
+        .navRightDiv ul li:hover  .signHoverDiv p{
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .navRightDiv ul li:hover  .signHoverDiv .signInDiv {
+            background-color: black;
+            color: white;
+            height: 30px;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        .navRightDiv ul li:hover  .signHoverDiv .signInDiv a{
+            vertical-align: middle;
+            color: white;
+        }
+
+
+        /*nav right shopping cart hover stying */
+
+        .navRightDiv ul li .shopHoverDiv{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content:center ;
+           
+            z-index: -999;
+            margin-top: -50%;
+            transition: all ease 0.5s;
+            background-color: white;
+            overflow: hidden;
+        }
+        .navRightDiv ul li .shopHoverDiv1 .products {
+            font-weight: bolds;
+            border-bottom: 2px solid gainsboro;
+        }
+
+        .navRightDiv ul li  .shopHoverDiv1 div{
+            padding-bottom: 15px;
+           
+        }
+
+        .navRightDiv ul li .shopHoverDiv1 .orderValue {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid gainsboro;
+        }
+
+        .navRightDiv ul li .shopHoverDiv1 .totalDiv {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bolder;
+            font-size: x-large;
+            
+        }
+        
+        .navRightDiv ul li  .shopHoverDiv1{
+            z-index: 1;
+            position: absolute;
+            height: max-content;
+            background-color: white;
+            left: 65%;
+            width: 400px;
+            padding: 5px;
+            box-shadow: 5px 5px gainsboro;
+            margin-top: 20px;
+        }
+
+        /* add to cart div*/
+        #shop{
+            cursor: pointer;
+        }
+        .shopClose{
+            margin-top: -999px;
+        }
+        .prodDiv{
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid gainsboro;
+            background-color: antiquewhite;
+            height: 50px;
+            padding: 5px;
+            width: 100%;
+        }
+
+        .prodDivClass{
+            display: flex;
+            justify-content: space-evenly;
+            border: 1px solid gainsboro;
+            background-color: whitesmoke;
+            padding: 5px;
+        }
+
+
+        /*2nd nav bar*/
+        #nav2{
+            display: grid;
+            grid-template-columns:  3fr 1fr ;
+            font-family:  'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+            font-size: medium
+
+        }
+
+        #nav2 ul{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #nav2 ul>li{
+            list-style: none;
+            margin-right: 5px;
+        }
+        #nav2 svg{
+            width: 30px;
+            height: 20px;
+        }
+        
+        .nav2Search{
+            display: flex;
+            align-items: center;
+        }
+        .nav2Search input{
+            border: none;
+            border-bottom: 2px solid gainsboro;
+        }
+
+/* features div*/
+        main{
+            padding-top: 20px;
+            padding-left: 150px;
+            padding-right: 150px;
+        }
+        #featuresDiv ul{
+            display: flex;
+            justify-content: space-around;
+        }
+        #featuresDiv ul>li{
+            list-style-type: none;
+        }
+
+        /*redImage div*/
+        #redImageDiv{
+            position: relative;
+            height: 600px;
+            width: 600px;
+            margin-left: 19%;
+            
+            background-color: antiquewhite;
+        }
+        #redImageDiv img{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            
+            
+        }
+
+
+        /*mainScrollDiv styling*/
+        #mainScrollDiv{
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 10px auto 10px;
+            height: 300px;
+            width: 100%;
+            position: relative;
+            align-items: center;
+           
+        }
+
+        
+
+        #mainScrollDiv #scrollItems{
+            height: 100%;
+            width: 98.5%;
+            margin-left: 20px;
+            display: flex;
+            overflow: scroll;
+            overflow: hidden;
+        }
+        #rightButton{
+            margin-left: 8px;
+        }
+        #leftButton,#rightButton{
+            padding: 2px;
+            width: 28px;
+            text-align: center;
+            border: none;
+        }
+
+        #leftButton:hover,#rightButton:hover{
+            border: 1px solid gray;
+        }
+        .scrollItemClass{
+            margin-right: 10px;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid gainsboro;
+        }
+        .scrollItemClass>div{
+            width: 200px;
+        }
+     .scrollItemClass img{
+            height: 65%;
+            width: 180px;
+        }
+
+
+      
+    /*footer*/
+    footer{
+        margin-top: 40px;
+        background-color: gainsboro;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 50px;
+    }
+    .footerSvg svg{
+        width: 24px;
+        height: 24px;
+    }
+
+    </style>
+
+    <link rel="stylesheet" href="./smalMQ.css">
+</head>
+
+
+<body>
+    <header>
+
+        <!-- register page -->
+        <dialog id="registerDialog">
+            <div id="formMainDiv">
+                <div class="formFirstDiv">
+                    <h2>Become an H&M member</h2>
+                     <a onclick="registerClose()"><svg height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 201.611 201.611" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <polygon style="fill:#010002;" points="50.243,145.097 52.863,147.717 100.802,99.782 148.744,147.728 151.367,145.097 103.425,97.162 151.367,49.227 148.748,46.593 100.802,94.539 52.863,46.593 50.236,49.227 98.179,97.162 "></polygon> <path style="fill:#010002;" d="M0,0v201.611h201.611V0H0z M196.407,196.407H5.204V5.204h191.204 C196.407,5.204,196.407,196.407,196.407,196.407z"></path> </g> </g> </g></svg></a>
+                </div>
+        
+                <p>Become a member — don’t miss out on deals, offers, discounts and bonus vouchers.</p>
+        
+                <form action="" id="registerForm">
+                    <dl>
+                        <dt>Username <span>*</span></dt>
+                        <input type="text" id="registerUserName" name="" class="input" >
+        
+                        <dt>Email <span>*</span></dt>
+                        <input type="text" id="registerEmail" name="" class="input" >
+        
+                        <dt>Create Password <span>*</span></dt>
+                        <input type="password" id="registerPassword" name="" class="input" >
+                        <span class="textSpan">8 characters 1 lowercase 1 uppercase 1 number</span>
+        
+                        <dt> Date of birth <span>*</span></dt>
+                        <input type="date"  id="dob" class="input" name="" >
+
+                        <span class="textSpan">H&M wants to give you a special treat on your birthday</span>
+                        <div class="lastDiv">
+                            <div>
+                                <input type="checkbox" name="" >
+                                <label for="" required>Remember</label>
+                            </div>
+                           <a>Forgot password?</a>
+                        </div>
+        
+                        <dt>
+                            <button type="button"  class="btn signInBtn" name="" value="" > Become  the a Member</button> 
+                        </dt>
+                        <dt>
+                            <button onclick="signOpen()" class="btn becomeBtn">Sign In</button>
+                        </dt>
+                    </dl>
+                </form>
+            </div>
+        </dialog>
+        
+        <!-- sign in page -->
+        <dialog id="signDialog">
+            <div id="formMainDiv">
+                <div class="formFirstDiv">
+                    <h2>Sign in</h2>
+                    <a onclick="signClose()" href=""><svg height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 201.611 201.611" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <polygon style="fill:#010002;" points="50.243,145.097 52.863,147.717 100.802,99.782 148.744,147.728 151.367,145.097 103.425,97.162 151.367,49.227 148.748,46.593 100.802,94.539 52.863,46.593 50.236,49.227 98.179,97.162 "></polygon> <path style="fill:#010002;" d="M0,0v201.611h201.611V0H0z M196.407,196.407H5.204V5.204h191.204 C196.407,5.204,196.407,196.407,196.407,196.407z"></path> </g> </g> </g></svg></a>
+                </div>
+                <p>Become a member — don’t miss out on deals, offers, discounts and bonus vouchers.</p>
+                <form action="" id="signForm">
+                    <dl>
+                        <dt>Email <span>*</span></dt>
+                        <input type="text" name="" id="signMail" class="input" >
+        
+                        <dt>Password <span>*</span></dt>
+                        <input type="password" id="signPass" name="" class="input" >
+        
+                        <div class="lastDiv">
+                            <div>
+                                <input type="checkbox" name=""  id="checkbox" required>
+                                <label for="">Remember</label>
+                            </div>
+                           <a href="">Forgot password?</a>
+                        </div>
+        
+                        <dt>
+                            <input type="button" id="signBtn"  class="btn signInBtn" name="" value="Sign In" >
+                        </dt>
+                        <dt>
+                            <button onclick="registerOpen(event)" class="btn becomeBtn">Become a member</button>
+                        </dt>
+                    </dl>
+                
+                    <div class="a"><a >H&M Membership</a></div>
+                    
+                </form>
+            </div>
+    
+        </dialog>
+     
+
+        <!-- nav page -->
+        <nav>
+            <div id="hamburger"> <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 7L4 7" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M20 12L4 12" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M20 17L4 17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg></div>
+            <div class="navLeftDiv">
+                <ul>
+                    <li> <a href="">Customer Service</a> </li>
+                    <li> <a href="">Newsletter</a></li>
+                    <li> <a href="">Find a store</a></li>
+                    <li id="threeDots" onclick="showDownload()">
+                        <svg fill="#000000" height="64px" width="64px" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path class="cls-1" d="M8,6.5A1.5,1.5,0,1,1,6.5,8,1.5,1.5,0,0,1,8,6.5ZM.5,8A1.5,1.5,0,1,0,2,6.5,1.5,1.5,0,0,0,.5,8Zm12,0A1.5,1.5,0,1,0,14,6.5,1.5,1.5,0,0,0,12.5,8Z"></path> </g></svg>
+                        <div id="threeDot" >
+                            <a href="">Download for Android</a>
+                            <a href="">Download for Windows</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="hmLogo"><svg xmlns="http://www.w3.org/2000/svg" width="2500" height="2500" viewBox="0 0 192.756 192.756"><g fill-rule="evenodd" clip-rule="evenodd"><path fill="#fff" d="M0 0h192.756v192.756H0V0z"/><path d="M130.424 44.314c6.051-3.026 9.156-2.561 9.234.465.076 3.957-.545 9.233-.934 13.035-2.326 20.64-6.051 37.477-6.361 58.737 10.01-25.916 18.312-43.762 29.098-65.875 3.414-7.061 5.664-5.742 8.457-7.061 10.941-4.889 11.328-1.863 9.854 4.189-5.275 21.959-18.777 91.403-20.871 102.035-.621 3.104-4.035 1.862-4.811.621-4.035-5.354-8.381-5.433-7.916-9.079 2.484-17.69 11.33-62.461 13.58-73.014-11.717 23.897-23.822 53.926-30.027 70.84-1.32 3.57-3.725 3.338-5.199.699-2.174-3.803-6.209-5.664-6.828-10.009-2.174-13.89 2.404-40.426 3.025-57.263-6.285 18.311-16.992 54.004-21.648 70.064-1.939 6.674-8.379 5.51-6.672-.853 7.137-27.08 22.424-74.799 29.018-91.947 1.552-4.11 5.663-3.877 9.001-5.584zM91.783 40.978c-2.096-.465-8.148 2.793-11.872 3.337-1.163.311-2.25 1.474-2.637 2.404C71.375 60.297 66.1 73.179 61.6 84.816a711.997 711.997 0 0 0-20.33 4.035c5.509-13.966 11.019-27.854 16.372-41.124 2.638-6.672-4.344-7.293-7.062-.62-3.491 8.613-10.087 24.828-17.38 43.685-5.354 1.319-11.174 2.793-17.07 4.578-4.345 1.163-4.501 2.326-2.639 4.966 1.086 1.396 3.104 1.241 4.113 2.328 2.561 2.637 4.113 5.819 8.689 6.284-4.189 10.863-8.225 21.959-11.793 32.589-2.328 6.75 4.267 8.147 6.75 1.009 4.035-11.406 8.302-22.967 12.726-34.685 3.647-.775 12.415-2.637 20.562-4.5-6.44 17.846-10.63 31.27-12.338 37.865-.309 1.241.311 1.862.543 2.482 2.096 3.104 4.268 3.259 7.061 7.217.699 1.087 3.259 1.629 4.191-1.009a1241.157 1241.157 0 0 1 17.768-50.279c2.406-.621 6.752-1.63 9.389-5.509 4.656-6.984 5.976-5.586 7.217-7.682 1.396-2.715.387-5.121-4.578-4.578 0 0-1.863.156-5.432.544 5.586-14.2 10.554-26.226 13.967-35.46 1.163-3.181 1.32-5.509-.543-5.974z" fill="#c7232f"/><path d="M86.325 129.153c.807-1.024 1.539-2.081 2.199-3.057 2.94-4.35.078-6.907-2.948-4.346-.432.397-.881.83-1.327 1.28a980.885 980.885 0 0 1-1.477-4.66c1.387-1.7 2.737-3.445 3.889-5.233 4.863-7.542-4.654-11.871-8.768-6.982-2.171 2.561-1.628 5.121-1.008 7.371.18.676.46 1.642.807 2.814a104.967 104.967 0 0 0-4.376 4.866c-4.733 5.433-3.417 12.428 1.552 13.967 2.996.929 5.823-.425 8.272-2.585.118.308.231.601.341.879 1.319 3.259 5.432 2.25 3.802-1.707-.262-.665-.59-1.56-.958-2.607zm-6.736-6.837c.402 1.267.835 2.598 1.267 3.872-.541.451-1.09.907-1.643 1.227-1.924 1.113-3.337-.078-.854-3.414.406-.576.822-1.134 1.23-1.685zm1.553-9.501c-.143-.361-.225-.715-.3-.996-1.392-5.2 4.568-3.811 1.553-.388-.428.485-.817.965-1.253 1.384z" fill="#c7232f"/></g></svg></div>
+
+            <div class="navRightDiv">
+                <ul>
+                    <svg fill="#000000" width="64px" height="64px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"></path></g></svg>
+                    <li> 
+                        <a onclick="signOpen(event)" ><span id="userName" style="color: black;">sign in</span></a>
+                        <div class="signHoverDiv">
+                            <div onclick="signOpen()" class="signInDiv"><a>Sign In</a></div>
+                            <p>My account</p>
+                            <p>H&M Member</p>
+                            <p class="notMember">Not a member yet! Join here</p>
+                        </div>
+                            
+                        
+                    </li>
+
+
+                    <li><svg width="64px" height="64px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M19.4308 12L18.4408 16C17.6168 18.913 16.9408 19.748 15.4698 19.946C15.1413 19.9859 14.8106 20.0039 14.4798 20H10.5198C10.1889 20.0039 9.85819 19.9859 9.52975 19.946C8.06375 19.746 7.38275 18.913 6.55875 16L5.56875 12C5.07575 9.014 7.32175 8.009 9.49975 8V7.125C9.46572 5.43382 10.8086 4.03499 12.4998 4C14.1909 4.03499 15.5338 5.43382 15.4998 7.125V8C17.6778 8.009 19.9228 9.013 19.4308 12Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M15.4998 8.75C15.914 8.75 16.2498 8.41421 16.2498 8C16.2498 7.58579 15.914 7.25 15.4998 7.25V8.75ZM9.49976 7.25C9.08554 7.25 8.74976 7.58579 8.74976 8C8.74976 8.41421 9.08554 8.75 9.49976 8.75V7.25ZM16.2498 10C16.2498 9.58579 15.914 9.25 15.4998 9.25C15.0855 9.25 14.7498 9.58579 14.7498 10H16.2498ZM14.7498 11C14.7498 11.4142 15.0855 11.75 15.4998 11.75C15.914 11.75 16.2498 11.4142 16.2498 11H14.7498ZM10.2498 10C10.2498 9.58579 9.91397 9.25 9.49976 9.25C9.08554 9.25 8.74976 9.58579 8.74976 10H10.2498ZM8.74976 11C8.74976 11.4142 9.08554 11.75 9.49976 11.75C9.91397 11.75 10.2498 11.4142 10.2498 11H8.74976ZM15.4998 7.25H9.49976V8.75H15.4998V7.25ZM14.7498 10V11H16.2498V10H14.7498ZM8.74976 10V11H10.2498V10H8.74976Z" fill="#000000"></path> </g></svg></li>
+                    <li>
+                        <a id="shop">shop </a> 
+                        <div class="shopHoverDiv">
+                            <div id="products" > Your shopping bag is empty</div>
+                           
+
+                            <div class="totalDiv">
+                                <div>Total</div>
+                                <div id="totalValue"> 0.00</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="nav2">
+            <div>
+                <ul>
+                    <li id="ladies">Ladies</li>
+                    <li id="mens">Men</li>
+                    <li id="kids">Kids</li>   
+                </ul>
+            </div>
+
+            <div class="nav2Search">
+                <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_15_152)"> <rect width="24" height="24" fill="white"></rect> <circle cx="10.5" cy="10.5" r="6.5" stroke="#000000" stroke-linejoin="round"></circle> <path d="M19.6464 20.3536C19.8417 20.5488 20.1583 20.5488 20.3536 20.3536C20.5488 20.1583 20.5488 19.8417 20.3536 19.6464L19.6464 20.3536ZM20.3536 19.6464L15.3536 14.6464L14.6464 15.3536L19.6464 20.3536L20.3536 19.6464Z" fill="#000000"></path> </g> <defs> <clipPath id="clip0_15_152"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg></li>
+                <input type="text">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="featuresDiv">
+            <ul>
+                <li> <p>Free shiping above 	&#8377; 1999</p></li>
+                <li> <p>Estimated Delivery time: 2-7 days</p></li>
+                <li><p>Free & flexible 15 day return</p></li>
+            </ul>
+        </div>
+
+        <div id="redImageDiv">
+            <a ><img src=""  id="imageUI" alt="item image "> </a>
+        </div>
+        
+        <!-- scroll list  items -->
+         <div id="mainScrollDiv">
+            <div > <button id="leftButton" onclick="prev()"><</button></div>
+            <div id= "scrollItems"></div>
+            <div > <button id="rightButton" onclick="next()">></button></div>
+         </div>
+    </main>
+
+    <footer>
+        <div class="container ">
+            <footer class="py-5 ">
+              <div class="row">
+                <div class="col-6 col-md-2 mb-3">
+                  <h5>SHOP</h5>
+                  <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Lady</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Men</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Baby</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Kids</a></li>
+                    
+                  </ul>
+                </div>
+          
+                <div class="col-6 col-md-2 mb-3">
+                  <h5>  CORPORATE INFO</h5>
+                  <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Career at H&M</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About H&M group</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Sustainability H&M Group</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+                  </ul>
+                </div>
+          
+                <div class="col-6 col-md-2 mb-3">
+                  <h5>HELP</h5>
+                  <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Customer Service</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">My H&M</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Contact</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Report a scam</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Cookie Notice</a></li>
+                  </ul>
+                </div>
+          
+                <div class="col-md-5 offset-md-1 mb-3">
+                  <form>
+                    <h5>Subscribe to our newsletter</h5>
+                    <p>Monthly digest of what's new and exciting from us.</p>
+                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                      <label for="newsletter1" class="visually-hidden">Email address</label>
+                      <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                      <button class="btn btn-secondary" type="button">Subscribe</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+          
+              
+
+              <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                <p>© 2024 Company, Inc. All rights reserved.</p>
+                <ul class="list-unstyled d-flex">
+                  <li class="ms-3"><a class="link-body-emphasis footerSvg" href="https://www.instagram.com/hm/"><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="#0F0F0F"></path> <path d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z" fill="#0F0F0F"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z" fill="#0F0F0F"></path> </g></svg></a></li>
+                  <li class="ms-3"><a class="link-body-emphasis footerSvg" href="https://www.youtube.com/user/hennesandmauritz"><svg width="64px" height="64px" viewBox="0 -3 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>youtube [#168]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-300.000000, -7442.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M251.988432,7291.58588 L251.988432,7285.97425 C253.980638,7286.91168 255.523602,7287.8172 257.348463,7288.79353 C255.843351,7289.62824 253.980638,7290.56468 251.988432,7291.58588 M263.090998,7283.18289 C262.747343,7282.73013 262.161634,7282.37809 261.538073,7282.26141 C259.705243,7281.91336 248.270974,7281.91237 246.439141,7282.26141 C245.939097,7282.35515 245.493839,7282.58153 245.111335,7282.93357 C243.49964,7284.42947 244.004664,7292.45151 244.393145,7293.75096 C244.556505,7294.31342 244.767679,7294.71931 245.033639,7294.98558 C245.376298,7295.33761 245.845463,7295.57995 246.384355,7295.68865 C247.893451,7296.0008 255.668037,7296.17532 261.506198,7295.73552 C262.044094,7295.64178 262.520231,7295.39147 262.895762,7295.02447 C264.385932,7293.53455 264.28433,7285.06174 263.090998,7283.18289" id="youtube-[#168]"> </path> </g> </g> </g> </g></svg></a></li>
+                  <li class="ms-3"><a class="link-body-emphasis footerSvg" href="https://www.pinterest.com/hm/"><svg width="64px" height="64px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>pinterest [#180]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-220.000000, -7399.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M173.876,7239 C168.399,7239 164,7243.43481 164,7248.95866 C164,7253.05869 166.407,7256.48916 169.893,7258.07936 C169.893,7256.21186 169.88,7256.45286 171.303,7250.38046 C170.521,7248.80236 171.129,7246.19673 172.88,7246.19673 C175.31,7246.19673 173.659,7249.79964 173.378,7251.2174 C173.129,7252.30544 173.959,7253.14238 174.955,7253.14238 C176.864,7253.14238 178.108,7250.71524 178.108,7247.87063 C178.108,7245.69456 176.615,7244.10437 174.042,7244.10437 C169.467,7244.10437 168.307,7249.19966 169.893,7250.79893 C170.292,7251.40294 169.893,7251.43118 169.893,7252.22174 C169.616,7253.05768 167.403,7251.84259 167.403,7248.70757 C167.403,7245.86195 169.727,7242.51518 174.457,7242.51518 C178.191,7242.51518 180.681,7245.27609 180.681,7248.2054 C180.681,7252.13805 178.523,7254.98366 175.37,7254.98366 C174.291,7254.98366 173.295,7254.3978 172.963,7253.72824 C172.36,7256.07371 172.238,7257.26258 171.303,7258.58153 C172.216,7258.83261 173.129,7259 174.125,7259 C179.602,7259 184,7254.56519 184,7249.04235 C183.752,7243.43481 179.353,7239 173.876,7239" id="pinterest-[#180]"> </path> </g> </g> </g> </g></svg></a></li>
+                  <li class="ms-3"><a class="link-body-emphasis footerSvg" href="https://www.facebook.com/hm"><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H15V13.9999H17.0762C17.5066 13.9999 17.8887 13.7245 18.0249 13.3161L18.4679 11.9871C18.6298 11.5014 18.2683 10.9999 17.7564 10.9999H15V8.99992C15 8.49992 15.5 7.99992 16 7.99992H18C18.5523 7.99992 19 7.5522 19 6.99992V6.31393C19 5.99091 18.7937 5.7013 18.4813 5.61887C17.1705 5.27295 16 5.27295 16 5.27295C13.5 5.27295 12 6.99992 12 8.49992V10.9999H10C9.44772 10.9999 9 11.4476 9 11.9999V12.9999C9 13.5522 9.44771 13.9999 10 13.9999H12V21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z" fill="#0F0F0F"></path> </g></svg></a></li>
+                </ul>
+              </div>
+            </footer>
+          </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+    <!-- threedot script -->
+    <script>
+        function showDownload(){
+            const threeDotDiv = document.getElementById('threeDot');
+            if (threeDotDiv.classList.contains('threeDotClass')) {
+                threeDotDiv.classList.remove('threeDotClass');
+            } else {
+                threeDotDiv.classList.add('threeDotClass');
+            }
+        }
+        
+    </script>
+
+    <!-- register page script  -->
+     <script>
+        var registerDialog=document.getElementById('registerDialog')
+       
+        function registerClose(){
+            registerDialog.close()
+        }
+
+        function registerOpen(e){
+            registerDialog.showModal()
+            e.preventDefault()
+        }
+     </script>
+
+
+  <!-- sign page script -->
+    <script>
+        var signdialog=document.getElementById('signDialog')
+        function signClose(){
+            signdialog.close()
+        }
+        
+        function signOpen(e){
+            signdialog.showModal()
+        }
+    </script>
+
+<!-- direct category pages  -->
+ <script>
+    var ladies=document.getElementById('ladies')
+    var mens=document.getElementById('mens')
+    var kids=document.getElementById('kids')
+
+    ladies.addEventListener('click', ()=>{
+        window.location.assign('./ladies.html')
+    })
+    
+    mens.addEventListener('click', ()=>{
+        window.location.assign('./mens.html')
+    })
+    kids.addEventListener('click', ()=>{
+        window.location.assign('./kids.html')
+    })
+ </script>
+    <!-- data display script -->
+    <script>
+        var imageToDisplay=document.getElementById('imageUI')
+        const URL= "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list?"
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': 'c72316ead3msh0bd3afd99524508p1c8dcajsn37d1d15114fe',
+                'x-rapidapi-host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+            }
+        };
+        /*const URL="http://localhost:3000/prods"*/
+        async function get(){
+            try{
+                let response =await fetch(URL, options);
+                if(! response.ok){
+                    throw new Error('Response '+ response.status)
+                }
+                var data=await response.json()
+                //console.log(data['results'])
+                logic(data,data['results']);
+              
+                arrOfObjs=data['results']
+                products(arrOfObjs)
+                let num=Math.floor(Math.random()*arrOfObjs.length )
+                
+                imageToDisplay.src=arrOfObjs[num]['images'][0]['url']
+                
+            }
+            catch(err){
+                console.error(err)
+            }
+        }
+        get()
+
+        function logic(data,arrOfObjs)
+        {
+                //console.log(data);
+            
+                let scrollItems=document.getElementById('scrollItems')
+                for( let i of arrOfObjs){
+                   //localStorage.setItem(JSON.stringify('item'+c), i['code'])
+                   let c=0
+                    scrollItemDiv=document.createElement('div')
+                    scrollItemDiv.className='scrollItemClass'
+                    //image for scroll items
+                    let scrollItemImg=document.createElement('img')
+                    scrollItemImg.src=i['images'][0]['url']
+                    scrollItemDiv.appendChild(scrollItemImg)
+
+                    scrollItems.appendChild(scrollItemDiv)
+
+                    //scroll items headings
+                    let title=document.createElement('h6')
+                    title.innerText= i['name']
+                    scrollItemDiv.appendChild(title)
+
+                    //scroll prices
+                    let price=document.createElement('p')
+                    price.innerText= 'Rs '+ Math.floor( (+i['price']['value'])*83.75)
+                    scrollItemDiv.appendChild(price)
+
+                    scrollItemDiv.addEventListener('click', ()=>{
+                        localStorage.setItem('currentItem',i['code'])
+                        window.location.assign('./productDetailed.html')
+                        
+                    })
+
+
+                    // scroll item colors
+                    let rgbColorsDiv= document.createElement('div')
+                    
+                   
+                    /*    
+                    colors=i['rgbColors']
+                    for(let j  of colors){
+                        let p=document.createElement('p')
+                        p.style.backgroundColor=j
+                        p.style.height=20
+                        rgbColorsDiv.appendChild(p)
+                        console.log(j)
+                    }
+                    scrollItemDiv.appendChild(rgbColorsDiv)
+                    */
+                    //scrollItems.innerHTML=i['images'][0]['url']
+                    items= document.getElementsByClassName('scrollItemClass')
+                    var rightButton=document.getElementById('rightButton')
+                    var leftButton=document.getElementById('leftButton')
+
+                    leftButton.addEventListener('click',()=>{
+                        scrollItems.prepend(scrollItems.lastChild)
+                    })
+
+                    rightButton.addEventListener('click',()=>{
+                        scrollItems.appendChild(scrollItems.firstChild)
+                    })
+                    /* buttons slide */
+                }
+                
+                
+            }
+      
+        function prev(){
+            scrollItems.prepend(scrollItems.lastChild)
+        }
+        function next(){
+            scrollItems.append(scrollItems.firstChild)
+        }
+    </script>
+
+    <!-- products page add to cart  -->
+    
+<script>
+     
+    var shop= document.getElementById('shop')
+    shopClicked=false
+    shop.addEventListener('click', ()=>{
+            var shopHoverDiv=document.getElementsByClassName('shopHoverDiv')
+            shopHoverDiv[0].className='shopHoverDiv1'
+       
+    })
+    function products(arr){
+        var products=document.getElementById('products')
+        
+        for(let i in arr){
+            let res=JSON.parse(localStorage.getItem('addToCartItem'+i))
+            if(res !=null){
+                let totalValue=document.getElementById('totalValue')
+                let prodDiv=document.createElement('div')
+
+                prodDiv.classList.add('prodDivClass')
+                let title=document.createElement('h6')
+                title.innerText=res['name']
+                prodDiv.appendChild(title)
+                products.appendChild(prodDiv)
+
+                let price=document.createElement('span') //Math.floor((price *83.75))
+                let prc=Math.floor( +res['price']['value'] *83.75)
+                price.innerText='Rs. '+prc
+                prodDiv.appendChild(price)
+
+                totalValue.innerText=+totalValue.innerText + +prc
+
+                let del=document.createElement('button')
+                del.innerText='Remove'
+                prodDiv.appendChild(del)
+                
+                del.addEventListener('click', ()=>{
+                    products.removeChild(prodDiv)
+                    totalValue.innerText= +totalValue.innerText- prc
+                })
+                localStorage.removeItem('addToCartItem'+i)
+            }
+        }
+    }
+    setInterval(products,2000)
+</script>
+
+<!-- register form validation -->
+ <script>
+    var registerUserName=document.getElementById('registerUserName')
+    var registerEmail=document.getElementById('registerEmail')
+    var registerPass=document.getElementById('registerPassword')
+    var dob=document.getElementById('dob')
+
+    var registerButton= document.getElementsByClassName('signInBtn')
+    registerButton[0].addEventListener('click', ()=>{
+        if(/^[A-Za-z0-9-_]{1,15}$/.test(registerUserName.value)){
+            if(/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(registerEmail.value)){
+                if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@%#])[A-Za-z\d@%#]{8,16}$/.test(registerPass.value)){
+                    if(dob.value){
+                        const URL='http://localhost:3000/userDetails'
+                        const obj={
+                            'username':registerUserName.value,
+                            'email':registerEmail.value,
+                            "password":registerPass.value,
+                            'dob':dob.value,
+                        }
+                        const option={
+                            method:'POST',
+                            headers: {
+                                'Content-type':"application/json"
+                            },
+                            body: JSON.stringify(obj)
+                        }
+                        const res=  fetch(URL,option) ;
+                        alert('!!Registered successfully!!')
+                    }
+                    else
+                        alert('Enter DOB!!')
+                }
+                else{
+                    alert('Enter valid password ')
+                }
+                
+            }
+            else{
+                alert('enter valid mail!!')
+            }
+           
+        }
+        else{
+            alert('Enter valid username !!')
+        }
+        
+    })
+ </script>
+
+ <!-- sign in validation  -->
+ <script>
+    const url = 'http://localhost:3000/userDetails';
+
+    // Fetch the data and handle it asynchronously
+    async function fetchData() {
+        try {
+            const response = await fetch(url);
+            const res = await response.json(); // Await the response and parse JSON
+            return res;
+        } catch (error) {
+            console.error('Error fetching user details:', error);
+            return null;
+        }
+    }
+
+    // Get references to DOM elements
+    var signMail = document.getElementById('signMail');
+    var signPass = document.getElementById('signPass');
+    var signButton = document.getElementById('signBtn');
+
+    // Add click event listener to the button
+    signButton.addEventListener('click', async () => {
+        const res = await fetchData(); // Wait for the fetchData function to complete
+        let found = false;
+    
+        for (const i of res) {
+            if (signMail.value === i['email'] || signMail.value === i['username']) {
+                if (signPass.value === i['password']) {
+                    let userName=document.getElementById('userName')
+                    userName.innerText=i['username']
+                    signDialog.style.display='none'
+                    found = true;
+                    break; // Exit the loop after a successful login
+                } else {
+                    alert('Incorrect password');
+                    found = true;
+                    break; // Exit the loop if the password is incorrect
+                }
+            }
+        }
+    
+        if (!found) {
+            alert('Username/email not found');
+        }
+    });
+</script>
+</body>
+</html>

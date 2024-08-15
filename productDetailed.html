@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 10px;
+        }
+
+        #container{
+            height: max-content;
+            width: 100%;
+            display: grid;
+            grid-template-columns:auto 400px;
+        }
+
+        #imgDiv{
+            display: flex;
+            flex-wrap: wrap;
+            
+        }
+
+        #imgDiv img{
+            width: 400px;
+            height: 600px;
+            margin: 5px;
+        }
+
+        .subImages img{
+            width: 80px;
+            height: 100px;
+            margin-right: 5px;
+        }
+        .img-active{
+            border: 2px solid black;
+        }
+
+        .buyNow{
+            margin: 10px;
+            padding: 10px;
+            width: 95%;
+            background-color: black;
+            color: white;
+            font-weight: bolder;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="imgDiv"></div>
+        <div id="optionsDiv">
+            
+        </div>
+    </div>
+
+    <script>
+        const URL= "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list?"
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': 'c72316ead3msh0bd3afd99524508p1c8dcajsn37d1d15114fe',
+                'x-rapidapi-host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+            }
+        };
+
+        let res= async ()=>{
+            try{
+                let response= await fetch(URL, options);
+                if( !response.ok){
+                    throw new Error('Response'+response.status)
+                }
+                let data=await response.json()
+                logic(data)
+            }
+            catch(err){
+                console.log(err)
+            }
+           
+        }
+        res()
+
+        function logic(data){
+            //console.log(data[0]['results'])
+            arrOfObjs=data['results']
+            let mens=[]
+            clickedItem=localStorage.getItem('currentItem')
+            
+            var imgDiv=document.getElementById('imgDiv')
+            var optionsDiv=document.getElementById('optionsDiv')
+            var subImages=document.getElementById('subImages')
+            for(i of arrOfObjs){
+                if(clickedItem==i['code']){
+                    for( j of i['allArticleImages']){
+                        let img=document.createElement('img')
+                        img.src=j
+                        imgDiv.appendChild(img)
+                    }
+
+                    var title=document.createElement('h2')
+                    title.innerText=i['name']
+                    optionsDiv.appendChild(title)
+
+                    var mrp=document.createElement('span')
+                    mrp.innerText=' MRP Inclusive of all taxes '
+                    mrp.style.color='gray'
+                    optionsDiv.appendChild(mrp)
+
+                    var price =document.createElement('h2')
+                    price.innerText='Rs '+ Math.floor( (+i['price']['value'])*83.75)
+                    optionsDiv.appendChild(price)
+
+                    var subImages=document.createElement('div')
+                    subImages.className='subImages'
+
+                    for( let j of i['allArticleImages']){
+                        let img=document.createElement('img')
+                        img.src=j
+                        subImages.appendChild(img)
+
+                        img.addEventListener('click', ()=>{
+                            img.className='img-active'
+                        } )
+                    }
+                    optionsDiv.appendChild(subImages)
+
+                    var size=document.createElement('span')
+                    size.innerText='sizes'
+                    size.style.color='gray'
+                    optionsDiv.appendChild(size)
+
+                    var sizeDiv=document.createElement('div')
+
+                    for(  let j of i['variantSizes']){
+                        let p=document.createElement('p')
+                        p.innerText=j['filterCode']
+                        p.style.display='inline-Block'
+                        p.style.border='thin solid black'
+                        p.style.margin='3px'
+                        p.style.height='45px'
+                        p.style.width='50px'
+                        p.style.padding='30px'
+
+                        sizeDiv.appendChild(p)
+                    }
+                    optionsDiv.appendChild(sizeDiv)
+                }
+
+                
+            }
+            var buyNow=document.createElement('button')
+            buyNow.innerText='Buy Now!!'
+            buyNow.className='buyNow'
+            optionsDiv.appendChild(buyNow)
+
+            buyNow.addEventListener('click', ()=>{
+                alert('!Yahoo order placed!!!!!!!!!')
+            })
+                      
+        }
+    </script>
+</body>
+</html>
