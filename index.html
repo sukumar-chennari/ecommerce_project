@@ -892,7 +892,7 @@
             if(/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(registerEmail.value)){
                 if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@%#])[A-Za-z\d@%#]{8,16}$/.test(registerPass.value)){
                     if(dob.value){
-                        const URL='http://localhost:3000/userDetails'
+                       /* const URL='http://localhost:3000/userDetails'
                         const obj={
                             'username':registerUserName.value,
                             'email':registerEmail.value,
@@ -906,7 +906,10 @@
                             },
                             body: JSON.stringify(obj)
                         }
-                        const res=  fetch(URL,option) ;
+                        const res=  fetch(URL,option) ;*/
+                        localStorage.setItem('username',registerUserName)
+                        localStorage.setItem('password',registerPass)
+                        localStorage.setItem('email',registerEmail)
                         alert('!!Registered successfully!!')
                     }
                     else
@@ -931,7 +934,7 @@
 
  <!-- sign in validation  -->
  <script>
-    const url = 'http://localhost:3000/userDetails';
+    /*const url = 'http://localhost:3000/userDetails';
 
     // Fetch the data and handle it asynchronously
     async function fetchData() {
@@ -944,12 +947,24 @@
             return null;
         }
     }
-
+*/
     // Get references to DOM elements
     var signMail = document.getElementById('signMail');
     var signPass = document.getElementById('signPass');
     var signButton = document.getElementById('signBtn');
 
+    if(signMail.value ==localStorage.getItem('username')){
+        if(signPass==localStorage.getItem('signPass')){
+            let userName=document.getElementById('userName')
+            userName.innerText=localStorage.getItem('username')
+            signDialog.style.display='none'
+        }
+    }
+    else{
+        alert('Username/Email and Password didnt match')
+    }
+
+    /*
     // Add click event listener to the button
     signButton.addEventListener('click', async () => {
         const res = await fetchData(); // Wait for the fetchData function to complete
@@ -974,7 +989,7 @@
         if (!found) {
             alert('Username/email not found');
         }
-    });
+    });*/
 </script>
 </body>
 </html>
