@@ -480,7 +480,7 @@
                 <p>Become a member — don’t miss out on deals, offers, discounts and bonus vouchers.</p>
                 <form action="" id="signForm">
                     <dl>
-                        <dt>Email <span>*</span></dt>
+                        <dt>Username<span>*</span></dt>
                         <input type="text" name="" id="signMail" class="input" >
         
                         <dt>Password <span>*</span></dt>
@@ -905,9 +905,9 @@
                             body: JSON.stringify(obj)
                         }
                         const res=  fetch(URL,option) ;*/
-                        localStorage.setItem('username',registerUserName)
-                        localStorage.setItem('password',registerPass)
-                        localStorage.setItem('email',registerEmail)
+                        localStorage.setItem('username',registerUserName.value)
+                        localStorage.setItem('password',registerPass.value)
+                        localStorage.setItem('email',registerEmail.value)
                         alert('!!Registered successfully!!')
                     }
                     else
@@ -952,7 +952,8 @@
     var signButton = document.getElementById('signBtn');
 
     if(signMail.value ==localStorage.getItem('username')){
-        if(signPass==localStorage.getItem('signPass')){
+        console.log(localStorage.getItem('username'))
+        if(signPass==localStorage.getItem('password')){
             let userName=document.getElementById('userName')
             userName.innerText=localStorage.getItem('username')
             signDialog.style.display='none'
