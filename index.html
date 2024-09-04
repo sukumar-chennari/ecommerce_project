@@ -495,7 +495,7 @@
                         </div>
         
                         <dt>
-                            <input type="button" id="signBtn"  class="btn signInBtn" name="" value="Sign In" >
+                            <button id="signBtn"  class="btn signInBtn" name="" >Sign In</button>
                         </dt>
                         <dt>
                             <button onclick="registerOpen(event)" class="btn becomeBtn">Become a member</button>
@@ -950,18 +950,20 @@
     var signMail = document.getElementById('signMail');
     var signPass = document.getElementById('signPass');
     var signButton = document.getElementById('signBtn');
-
-    if(signMail.value ==localStorage.getItem('username')){
-        console.log(localStorage.getItem('username'))
-        if(signPass==localStorage.getItem('password')){
-            let userName=document.getElementById('userName')
-            userName.innerText=localStorage.getItem('username')
-            signDialog.style.display='none'
+    signButton.addEventListener('click',()=>{
+        if(signMail.value ==localStorage.getItem('username')){
+            console.log(localStorage.getItem('username'))
+            if(signPass==localStorage.getItem('password')){
+                let userName=document.getElementById('userName')
+                userName.innerText=localStorage.getItem('username')
+                signDialog.style.display='none'
+            }
         }
-    }
-    else{
-        alert('Username/Email and Password didnt match')
-    }
+        else{
+            alert('Username/Email and Password didnt match')
+        }
+    })
+  
 
     /*
     // Add click event listener to the button
