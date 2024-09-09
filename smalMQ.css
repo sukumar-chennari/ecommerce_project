@@ -68,3 +68,113 @@
         padding-right: 10px;
     }
 }
+
+/* Tablet devices */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    #registerDialog, #signDialog {
+        width: 80%;
+        padding: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #formMainDiv {
+        width: 90%;
+    }
+
+    .formFirstDiv {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .formFirstDiv svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    #nav2 ul {
+        flex-direction: row;
+    }
+
+    #nav2 ul>li {
+        margin-right: 10px;
+    }
+
+    .nav2Search input {
+        width: auto;
+    }
+
+    #redImageDiv {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .prodDiv {
+        height: 60px;
+    }
+
+    .scrollItemClass img {
+        width: 100%;
+        height: auto;
+    }
+
+    footer {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+/* Desktop devices */
+@media only screen and (min-width: 1024px) {
+    #registerDialog, #signDialog {
+        width: 400px;
+        padding: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #formMainDiv {
+        width: 400px;
+    }
+
+    .formFirstDiv {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .formFirstDiv svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    #nav2 ul {
+        flex-direction: row;
+    }
+
+    #nav2 ul>li {
+        margin-right: 15px;
+    }
+
+    .nav2Search input {
+        width: auto;
+    }
+
+    #redImageDiv {
+        width: 600px;
+        margin-left: 19%;
+    }
+
+    .prodDiv {
+        height: 50px;
+    }
+
+    .scrollItemClass img {
+        width: 180px;
+        height: auto;
+    }
+
+    footer {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}

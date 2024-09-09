@@ -1,0 +1,70 @@
+@media screen and (max-width:560px) {
+    #hamburger{
+        display: block ;
+    }
+    #hamburger svg{
+        width: 50px;
+        height: 50px;
+    }
+   nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+   }
+    .navLeftDiv{
+        display: none;
+    }
+
+    #nav2{
+        display: none;
+    }
+
+
+    /* features styling */
+    main{
+        padding: 0;
+        margin: 0;
+    }
+    #featuresDiv{
+        padding-left: 10px;
+        margin: 5%;
+        width: 100%;
+        text-align: center;
+    }
+    #featuresDiv ul {
+        display: flex;
+        padding: 9px;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    /* redImage styling */
+
+    #redImageDiv{
+        height: 400px;
+        width: 80%;
+
+        margin-left:13%;
+        
+    }
+
+    /* main scroll Div */
+    #mainScrollDiv{
+        
+        width: 100%;
+    }
+
+    .scrollItemClass{
+        width: 800px;
+    }
+
+
+    /* footer */
+
+    footer {
+        margin-top: 20px;
+        background-color: gainsboro;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
