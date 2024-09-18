@@ -77,6 +77,8 @@
         left: 50%;
         transform: translateX(-50%);
     }
+    /* For mobile responsiveness */
+
 
     #formMainDiv {
         width: 90%;

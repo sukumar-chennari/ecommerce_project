@@ -12,100 +12,111 @@
             margin: 0;
         }
 
-        dialog::backdrop{
-            padding: 0;
-            margin: 0;
-        }
-        /*register page */
-        #registerDialog{
-            position: absolute;
-            border: none;
-            padding: 5px;
-            background-color: whitesmoke;
-            
-            top: 50%;
-            left: 50%;
-            right: 50%;
-            transform: translate(-50%,-50%);
-           }
+/* Common styling for both dialogs */
+dialog {
+    position: absolute;
+    border: none;
+    background-color: whitesmoke;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+    width: 400px; /* Width increased for spaciousness */
+    padding: 20px; /* Padding inside dialog box */
+}
 
-        /* sign styling*/
-       #signDialog{
-        position: absolute;
-        border: none;
-        top: 50%;
-        left: 50%;
-        right: 50%;
-        background-color: whitesmoke;
-        transform: translate(-50%,-50%);
+#formMainDiv {
+    width: 100%; /* Ensure it takes up the dialog width */
+    padding: 10px;
+    background-color: whitesmoke;
+}
 
-       }
-       #formMainDiv{
-        width: 400px;
-        height: max-content;
-        padding: 10px;
-        background-color: whitesmoke;
-    }
-    #formMainDiv p{
-        font-weight: bold;
-        font-size: small;
-    }
-    .formFirstDiv{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px;
-    }
-    .formFirstDiv svg{
-        width: 32px;
-        height: 32px;
-    }
+#formMainDiv p {
+    font-weight: bold;
+    font-size: small;
+    margin-bottom: 20px; /* Adds more space below the paragraph */
+}
 
-    #signForm .input{
-        margin-top: 10px;
-        width: 100%;
-        height: 30px;
-    }
-    #registerForm .input{
-        margin-top: 10px;
-        width: 100%;
-        height: 30px;
-    }
-    span{
-        color: red;
-        vertical-align: super;
-    }
-    .textSpan{  
-        color: gray;
-    }
-    .lastDiv{
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+.formFirstDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
 
-    .btn{
-        width: 100%;
-        height: 35px;
-        margin-top: 10px;
-    }
-    .signInBtn{
-        background-color: black;
-        color: white;
-        font-weight: bolder;
-        word-spacing: 2px;
-    }
+.formFirstDiv h2 {
+    font-size: 1.5rem; /* Larger heading */
+}
 
-    .becomeBtn{
-        font-weight: bolder;
-    }
+.formFirstDiv svg {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
 
-    .a{
-        width: 100%;
-        text-align: center;
-        font-size: small;
-    }
+#signForm .input,
+#registerForm .input {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px; /* Slightly taller input fields */
+    padding: 5px;
+    font-size: 1rem; /* Font size for better readability */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Rounded input fields */
+}
+
+span {
+    color: red;
+    vertical-align: super;
+}
+
+.textSpan {
+    color: gray;
+    font-size: 0.9rem; /* Slightly smaller text */
+    margin-bottom: 15px; /* Add some space below the help text */
+    display: block;
+}
+
+.lastDiv {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Increased space */
+    margin-bottom: 20px; /* Increased space */
+}
+
+.btn {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px; /* More space between the buttons */
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px; /* Rounded buttons */
+    cursor: pointer;
+}
+
+.signInBtn {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    word-spacing: 2px;
+}
+
+.becomeBtn {
+    background-color: #f1f1f1;
+    font-weight: bold;
+    color: #333;
+}
+
+.a {
+    width: 100%;
+    text-align: center;
+    font-size: small;
+    margin-top: 20px; /* Add some space above the anchor */
+}
+
+
+
     
 
     /*three dot styling */
@@ -531,27 +542,30 @@
 
             <div class="navRightDiv">
                 <ul>
-                    <svg fill="#000000" width="64px" height="64px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"></path></g></svg>
-                    <li> 
-                        <a onclick="signOpen(event)" ><span id="userName" style="color: black;">sign in</span></a>
+                    <li>
+                        <svg fill="#000000" width="64px" height="64px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke="#000000">
+                            <path d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"></path>
+                        </svg>
+                        <a onclick="signOpen(event)">
+                            <span id="userName" style="color: black;">sign in</span>
+                        </a>
                         <div class="signHoverDiv">
-                            <div onclick="signOpen()" class="signInDiv"><a>Sign In</a></div>
+                            <div class="signInDiv"><a onclick="signOpen(event)">Sign In</a></div>
                             <p>My account</p>
                             <p>H&M Member</p>
-                            <p class="notMember">Not a member yet! Join here</p>
+                            <p class="notMember">Not a member yet? Join here</p>
                         </div>
-                            
-                        
                     </li>
-
-
-                    <li><svg width="64px" height="64px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M19.4308 12L18.4408 16C17.6168 18.913 16.9408 19.748 15.4698 19.946C15.1413 19.9859 14.8106 20.0039 14.4798 20H10.5198C10.1889 20.0039 9.85819 19.9859 9.52975 19.946C8.06375 19.746 7.38275 18.913 6.55875 16L5.56875 12C5.07575 9.014 7.32175 8.009 9.49975 8V7.125C9.46572 5.43382 10.8086 4.03499 12.4998 4C14.1909 4.03499 15.5338 5.43382 15.4998 7.125V8C17.6778 8.009 19.9228 9.013 19.4308 12Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M15.4998 8.75C15.914 8.75 16.2498 8.41421 16.2498 8C16.2498 7.58579 15.914 7.25 15.4998 7.25V8.75ZM9.49976 7.25C9.08554 7.25 8.74976 7.58579 8.74976 8C8.74976 8.41421 9.08554 8.75 9.49976 8.75V7.25ZM16.2498 10C16.2498 9.58579 15.914 9.25 15.4998 9.25C15.0855 9.25 14.7498 9.58579 14.7498 10H16.2498ZM14.7498 11C14.7498 11.4142 15.0855 11.75 15.4998 11.75C15.914 11.75 16.2498 11.4142 16.2498 11H14.7498ZM10.2498 10C10.2498 9.58579 9.91397 9.25 9.49976 9.25C9.08554 9.25 8.74976 9.58579 8.74976 10H10.2498ZM8.74976 11C8.74976 11.4142 9.08554 11.75 9.49976 11.75C9.91397 11.75 10.2498 11.4142 10.2498 11H8.74976ZM15.4998 7.25H9.49976V8.75H15.4998V7.25ZM14.7498 10V11H16.2498V10H14.7498ZM8.74976 10V11H10.2498V10H8.74976Z" fill="#000000"></path> </g></svg></li>
                     <li>
-                        <a id="shop">shop </a> 
+                        <svg width="64px" height="64px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.4308 12L18.4408 16C17.6168 18.913 16.9408 19.748 15.4698 19.946C15.1413 19.9859 14.8106 20.0039 14.4798 20H10.5198C10.1889 20.0039 9.85819 19.9859 9.52975 19.946C8.06375 19.746 7.38275 18.913 6.55875 16L5.56875 12C5.07575 9.014 7.32175 8.009 9.49975 8V7.125C9.46572 5.43382 10.8086 4.03499 12.4998 4C14.1909 4.03499 15.5338 5.43382 15.4998 7.125V8C17.6778 8.009 19.9228 9.013 19.4308 12Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M15.4998 8.75C15.914 8.75 16.2498 8.41421 16.2498 8C16.2498 7.58579 15.914 7.25 15.4998 7.25V8.75ZM9.49976 7.25C9.08554 7.25 8.74976 7.58579 8.74976 8C8.74976 8.41421 9.08554 8.75 9.49976 8.75V7.25ZM16.2498 10C16.2498 9.58579 15.914 9.25 15.4998 9.25C15.0855 9.25 14.7498 9.58579 14.7498 10H16.2498ZM14.7498 11C14.7498 11.4142 15.0855 11.75 15.4998 11.75C15.914 11.75 16.2498 11.4142 16.2498 11H14.7498ZM10.2498 10C10.2498 9.58579 9.91397 9.25 9.49976 9.25C9.08554 9.25 8.74976 9.58579 8.74976 10H10.2498ZM8.74976 11C8.74976 11.4142 9.08554 11.75 9.49976 11.75C9.91397 11.75 10.2498 11.4142 10.2498 11H8.74976ZM15.4998 7.25H9.49976V8.75H15.4998V7.25ZM14.7498 10V11H16.2498V10H14.7498ZM8.74976 10V11H10.2498V10H8.74976Z" fill="#000000"></path>
+                        </svg>
+                    </li>
+                    <li>
+                        <a id="shop">shop</a>
                         <div class="shopHoverDiv">
-                            <div id="products" > Your shopping bag is empty</div>
-                           
-
+                            <div id="products"> Your shopping bag is empty</div>
                             <div class="totalDiv">
                                 <div>Total</div>
                                 <div id="totalValue"> 0.00</div>
@@ -560,6 +574,18 @@
                     </li>
                 </ul>
             </div>
+            
+            <!-- Add a sign-in dialog box -->
+            <dialog id="signDialog">
+                <form>
+                    <label for="signMail">Email:</label>
+                    <input type="email" id="signMail" name="signMail" required>
+                    <label for="signPass">Password:</label>
+                    <input type="password" id="signPass" name="signPass" required>
+                    <button type="submit" id="signBtn">Sign In</button>
+                </form>
+            </dialog>
+            
         </nav>
         <div id="nav2">
             <div  >
@@ -719,6 +745,7 @@
         window.location.assign('./kids.html')
     })
  </script>
+
     <!-- data display script -->
     <script>
         var imageToDisplay=document.getElementById('imageUI')
@@ -879,118 +906,91 @@
 
 <!-- register form validation -->
  <script>
-    var registerUserName=document.getElementById('registerUserName')
-    var registerEmail=document.getElementById('registerEmail')
-    var registerPass=document.getElementById('registerPassword')
-    var dob=document.getElementById('dob')
+    var registerUserName = document.getElementById('registerUserName');
+var registerEmail = document.getElementById('registerEmail');
+var registerPass = document.getElementById('registerPassword');
+var dob = document.getElementById('dob');
 
-    var registerButton= document.getElementsByClassName('signInBtn')
-    registerButton[0].addEventListener('click', ()=>{
-        if(/^[A-Za-z0-9-_]{1,15}$/.test(registerUserName.value)){
-            if(/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(registerEmail.value)){
-                if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@%#])[A-Za-z\d@%#]{8,16}$/.test(registerPass.value)){
-                    if(dob.value){
-                       /* const URL='http://localhost:3000/userDetails'
-                        const obj={
-                            'username':registerUserName.value,
-                            'email':registerEmail.value,
-                            "password":registerPass.value,
-                            'dob':dob.value,
-                        }
-                        const option={
-                            method:'POST',
-                            headers: {
-                                'Content-type':"application/json"
-                            },
-                            body: JSON.stringify(obj)
-                        }
-                        const res=  fetch(URL,option) ;*/
-                        localStorage.setItem('username',registerUserName.value)
-                        localStorage.setItem('password',registerPass.value)
-                        localStorage.setItem('email',registerEmail.value)
-                        alert('!!Registered successfully!!')
-                    }
-                    else
-                        alert('Enter DOB!!')
+var registerButton = document.getElementsByClassName('signInBtn')[0];
+
+registerButton.addEventListener('click', () => {
+    if (validateUsername(registerUserName.value)) {
+        if (validateEmail(registerEmail.value)) {
+            if (validatePassword(registerPass.value)) {
+                if (dob.value) {
+                    // If all validations pass
+                    localStorage.setItem('username', registerUserName.value);
+                    localStorage.setItem('password', registerPass.value);
+                    localStorage.setItem('email', registerEmail.value);
+                    alert('!!Registered successfully!!');
+                } else {
+                    alert('Please enter your Date of Birth.');
                 }
-                else{
-                    alert('Enter valid password ')
-                }
-                
+            } else {
+                alert('Password must be 8-16 characters, include 1 lowercase, 1 uppercase, 1 number, and 1 special character (@, %, #).');
             }
-            else{
-                alert('enter valid mail!!')
-            }
-           
+        } else {
+            alert('Please enter a valid Gmail address (example@gmail.com).');
         }
-        else{
-            alert('Enter valid username !!')
-        }
-        
-    })
+    } else {
+        alert('Username must be alphanumeric and between 1 to 15 characters.');
+    }
+});
+
+// Validation functions
+function validateUsername(username) {
+    return /^[A-Za-z0-9-_]{1,15}$/.test(username);
+}
+
+function validateEmail(email) {
+    return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email);
+}
+
+function validatePassword(password) {
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@%#])[A-Za-z\d@%#]{8,16}$/.test(password);
+}
+
  </script>
 
  <!-- sign in validation  -->
- <script>
-    /*const url = 'http://localhost:3000/userDetails';
-
-    // Fetch the data and handle it asynchronously
-    async function fetchData() {
-        try {
-            const response = await fetch(url);
-            const res = await response.json(); // Await the response and parse JSON
-            return res;
-        } catch (error) {
-            console.error('Error fetching user details:', error);
-            return null;
-        }
-    }
-*/
+<script>
     // Get references to DOM elements
-    var signMail = document.getElementById('signMail');
-    var signPass = document.getElementById('signPass');
-    var signButton = document.getElementById('signBtn');
-    signButton.addEventListener('click',()=>{
-        if(signMail.value ==localStorage.getItem('username')){
-            console.log(localStorage.getItem('username'))
-            if(signPass==localStorage.getItem('password')){
-                let userName=document.getElementById('userName')
-                userName.innerText=localStorage.getItem('username')
-                signDialog.style.display='none'
-            }
-        }
-        else{
-            alert('Username/Email and Password didnt match')
-        }
-    })
-  
+var signMail = document.getElementById('signMail');
+var signPass = document.getElementById('signPass');
+var signButton = document.getElementById('signBtn');
+var signDialog = document.getElementById('signDialog');
+var userName = document.getElementById('userName');
 
-    /*
-    // Add click event listener to the button
-    signButton.addEventListener('click', async () => {
-        const res = await fetchData(); // Wait for the fetchData function to complete
-        let found = false;
-    
-        for (const i of res) {
-            if (signMail.value === i['email'] || signMail.value === i['username']) {
-                if (signPass.value === i['password']) {
-                    let userName=document.getElementById('userName')
-                    userName.innerText=i['username']
-                    signDialog.style.display='none'
-                    found = true;
-                    break; // Exit the loop after a successful login
-                } else {
-                    alert('Incorrect password');
-                    found = true;
-                    break; // Exit the loop if the password is incorrect
-                }
-            }
+// Open sign-in dialog
+function signOpen(event) {
+    event.preventDefault();
+    signDialog.showModal(); // Open dialog box
+}
+
+// Close the sign-in dialog after clicking sign in
+signButton.addEventListener('click', (event) => {
+    event.preventDefault();  // Prevent form submission
+
+    // Retrieve the values from localStorage
+    let storedUsername = localStorage.getItem('username');
+    let storedPassword = localStorage.getItem('password');
+
+    // Check if entered email/username matches the stored username
+    if (signMail.value === storedUsername) {
+        console.log("Username found:", storedUsername);
+
+        // Check if the entered password matches the stored password
+        if (signPass.value === storedPassword) {
+            userName.innerText = storedUsername;  // Display username on the page
+            signDialog.close();  // Close the sign-in dialog
+        } else {
+            alert('Incorrect password');
         }
-    
-        if (!found) {
-            alert('Username/email not found');
-        }
-    });*/
+    } else {
+        alert('Username/Email and Password did not match');
+    }
+});
+
 </script>
 </body>
 </html>
